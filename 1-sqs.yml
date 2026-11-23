@@ -1,0 +1,22 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "AllowPhotoLabUploads",
+      "Effect": "Allow",
+      "Principal": {
+        "Service": "s3.amazonaws.com"
+      },
+      "Action": "sqs:SendMessage",
+      "Resource": "arn:aws:sqs:eu-west-2:114549249275:photo-lab-uploads",
+      "Condition": {
+        "ArnEquals": {
+          "aws:SourceArn": "arn:aws:s3:::photo-lab-yourname-2741"
+        },
+        "StringEquals": {
+          "aws:SourceAccount": "114549249275"
+        }
+      }
+    }
+  ]
+}
